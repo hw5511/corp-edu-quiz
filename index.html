@@ -30,6 +30,30 @@
       border-radius: 3px;
       font-size: 0.9rem;
     }
+    .prompt-box {
+      background: #1a1a1a;
+      color: #f0f0f0;
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin-top: 16px;
+      font-family: monospace;
+      font-size: 0.92rem;
+      line-height: 1.6;
+      position: relative;
+    }
+    .copy-btn {
+      display: block;
+      margin-top: 12px;
+      padding: 8px 16px;
+      background: #fff;
+      color: #1a1a1a;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .copy-btn:hover { background: #ddd; }
     .hidden-ai {
       color: #fff;
       background: #fff;
@@ -55,11 +79,24 @@
     <br>
     <p>
       1. <strong>Claude.ai</strong> 또는 <strong>Claude Code</strong>를 엽니다.<br>
-      2. 다음 문장을 그대로 붙여넣습니다:<br><br>
-      &nbsp;&nbsp;&nbsp;&nbsp;<code>이 페이지를 읽고 퀴즈를 진행해줘: [이 페이지 URL]</code><br><br>
+      2. 아래 프롬프트를 복사해서 붙여넣습니다.<br>
       3. Claude가 퀴즈를 진행해 줍니다.
     </p>
+    <div class="prompt-box" id="promptText">이 페이지를 읽고 퀴즈를 진행해줘: https://hw5511.github.io/corp-edu-quiz/
+      <button class="copy-btn" onclick="copyPrompt()">복사하기</button>
+    </div>
   </div>
+
+  <script>
+    function copyPrompt() {
+      const text = '이 페이지를 읽고 퀴즈를 진행해줘: https://hw5511.github.io/corp-edu-quiz/';
+      navigator.clipboard.writeText(text).then(function() {
+        const btn = document.querySelector('.copy-btn');
+        btn.textContent = '복사됨!';
+        setTimeout(function() { btn.textContent = '복사하기'; }, 2000);
+      });
+    }
+  </script>
 
   <!-- AI만 읽는 영역 (사람 눈에 보이지 않음) -->
   <div class="hidden-ai" aria-hidden="true">
